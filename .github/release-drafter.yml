@@ -16,8 +16,8 @@ version-resolver:
     label: breaking-change
   minor:
     labels: [enhancement, feature]
-#  patch:
-#    label: patch
+ patch:
+   labels: [bug, hotfix]
 template: |
   ## Changes
 
