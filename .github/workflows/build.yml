@@ -25,9 +25,10 @@ jobs:
       run: make distcheck
 
     - name: Upload Artifacts
+      id: uploadArtifacts
       uses: actions/upload-artifact@v4
       with:
-        name: gtksourceview-wren.deb
-        path: debian/gtksourceview-wren.deb
-        retention-days: 30
+        name: gtksourceview-wren-debian
+        path: debian/*.deb
+        retention-days: 7
         overwrite: true
