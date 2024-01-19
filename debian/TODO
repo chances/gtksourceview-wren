@@ -1,4 +1,6 @@
 # TODO
+- [Debian New Maintainers' Guide](https://www.debian.org/doc/manuals/maint-guide/index.en.html)
+- [Best Packaging Practices - debian.org](https://www.debian.org/doc/manuals/developers-reference/best-pkging-practices.html#bpp-vcs)
 - Resolve lint issues (`make check`)
   - wrong-file-owner-uid-or-gid usr/ 1000/1000
   - wrong-file-owner-uid-or-gid usr/share/ 1000/1000
