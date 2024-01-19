@@ -13,28 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: Homebrew/actions/setup-homebrew@master
-    - name: Cache Homebrew Bundler RubyGems
-      id: cache-homebrew
-      uses: actions/cache@v3
-      with:
-        path: ${{ steps.set-up-homebrew.outputs.gems-path }}
-        key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
-        restore-keys: ${{ runner.os }}-rubygems-
-
-    - name: Install Homebrew Bundler RubyGems
-      if: steps.cache-homebrew.outputs.cache-hit != 'true'
-      run: brew install-bundler-gems
 
     - name: Install dependencies
       run: |
         sudo apt install build-essential debhelper libgtksourceview-3.0-common --yes
-        brew install asdf
-        asdfBin=`brew --prefix asdf`/libexec/bin
-        $(asdfBin)/asdf install
-        actionValidator=$(asdfBin)/asdf list action-validator | cut --delimiter="*" --fields=2
-        $(asdfBin)/asdf local action-validator $(actionValidator)
-        echo "$(asdfBin)" >> $GITHUB_PATH
 
     - name: Run check
       run: make check
