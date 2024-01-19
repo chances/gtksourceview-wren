@@ -1,0 +1,32 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#DH_VERBOSE = 1
+
+# see FEATURE AREAS in dpkg-buildflags(1)
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+# package maintainers to append LDFLAGS
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+override_dh_auto_build:
+#	dh_auto_build -- build
+	@exit 0
+
+override_dh_auto_test:
+#	@dh_auto_test -- check
+	@exit 0
+
+override_dh_auto_install:
+	@dh_auto_install -- install
+
+%:
+	dh $@ 
+
+# all:
+gtksourceview-wren_0.1.changes: gtksourceview-wren.deb
+# TODO: Echo `date` to changelog author comments
+#	@dpkg-genchanges -b

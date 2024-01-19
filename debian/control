@@ -1,0 +1,18 @@
+Source: gtksourceview-wren
+Section: base
+Version: 0.1
+Priority: optional
+Maintainer: Chance Snow <apps@chancesnow.me>
+
+Package: gtksourceview-wren
+Architecture: all
+Description: Wren scripting language syntax and MIME type
+	A syntax definition and MIME type for the [Wren](https://wren.io) scripting
+	language packaged for Debian distributions.
+	The included syntax definition is compatible with GtkSourceView and will be
+	globally available to any application that uses GtkSourceView.
+Vcs-Git: https://github.com/chances/gtksourceview-wren.git
+Vcs-Browser: https://github.com/chances/gtksourceview-wren
+Homepage: https://chancesnow.me/projects/gtksourceview-wren
+Depends: libgtksourceview-3.0-common
+Enhances: libgtksourceview-3.0-1

@@ -1,4 +1,15 @@
+# Intermediate sources
+debian/debhelper-build-stamp
+debian/files
+debian/gtksourceview-wren.debhelper.log
+debian/gtksourceview-wren.substvars
+src/usr/share/doc/gtksourceview-wren/changelog.gz
+src/usr/share/doc/gtksourceview-wren/copyright
+
+# Targets
+debian/gtksourceview-wren/
 gtksourceview-wren.deb
+gtksourceview-wren_0.1.changes
 
 # Temporary files
 *~

@@ -1,0 +1,12 @@
+gtksourceview-wren (0.1) UNRELEASED; urgency=medium
+
+  * Initial unstable release.
+
+-- Chance Snow <git@chancesnow.me> Thu Jan 18 22:31:20 CST 2024
+
+gtksourceview-wren (1.0) unstable; urgency=high
+
+  * Initial stable release.
+  
+-- Chance Snow <git@chancesnow.me> Thu Jan 18 22:31:20 CST 2024
+
