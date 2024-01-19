@@ -1,0 +1,38 @@
+name: Draft Releases
+run-name: Triggered from ${{ github.ref_type }} ${{ github.ref_name }} by @${{ github.actor }}
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, reopened, synchronize]
+  # Required to support PRs from forks
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  update-draft-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "TAG_NAME=$(git describe --tags HEAD --abbrev=0 2>/dev/null || echo "v0.1.0")" >> $GITHUB_OUTPUT
+        id: version
+      - name: Update Release Draft
+        uses: release-drafter/release-drafter@v5.25.0
+        with:
+          # Name of the created or updated GitHub release.
+          # Overrides `name-template` specified in `release-drafter.yml`.
+          name: ${{ steps.version.outputs.TAG_NAME }}
+
+          # The tag name assigned to the created or updated GitHub release.
+          # Overrides `tag-template` specified in `release-drafter.yml`.
+          tag: ${{ steps.version.outputs.TAG_NAME }}
+
+          # The version to be associated with the GitHub release that's created or updated.
+          # Overrides any version calculated by the release-drafter.
+          version: ${{ steps.version.outputs.TAG_NAME }}
+          publish: false
+          commitish: ${{ github.sha }}
+          prerelease: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, 'v0.') }}
+          # Semantic identifier (alpha, beta, rc, etc.) to increment for prerelease versions.
+          prerelease-identifier: 'rc'
