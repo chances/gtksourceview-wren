@@ -2,15 +2,17 @@
 
 Wren language syntax and MIME type Debian package.
 
-## Building
+## Development
+
+### Building
 
 ```bash
 make
 ```
 
-## Installing
+### Installing
 
 ```bash
-./INSTALL
+make install
 ```
 
