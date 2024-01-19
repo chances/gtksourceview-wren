@@ -10,7 +10,9 @@ debian/gtksourceview-wren.deb: $(SOURCES)
 	@dpkg-buildpackage -b -us -uc
 	@dpkg-deb --build debian/gtksourceview-wren
 
-check: check-workflows gtksourceview-wren.deb
+check: check-workflows debian/gtksourceview-wren.deb
+	@echo "Linting Wren language syntax."
+	@jing /usr/share/gtksourceview-3.0/language-specs/language2.rng data/language-specs/wren.lang || true
 	@echo "Linting Debian package."
 	@echo lintian -i -I --show-overrides debian/gtksourceview-wren.deb
 	@lintian -i -I --show-overrides debian/gtksourceview-wren.deb || true

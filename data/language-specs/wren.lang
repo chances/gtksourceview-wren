@@ -78,8 +78,10 @@
       <match extended="true">
         (import)\s*
         (".*?")
-        (\s+(for)\s+([A-Za-z]+))?
+        (\s+(for)\s+
       </match>
+      <!-- TODO: Something fancy, like detecting "error"s in malformed class identifiers? -->
+      <!-- TODO: Add `((\s+(as)\s+)?` for import aliases -->
       <include>
         <context id="imported-module" sub-pattern="2" style-ref="imported-module" class="path"/>
         <context id="keyword" sub-pattern="4" style-ref="keyword" class="keyword"/>
@@ -227,8 +229,7 @@
         <context ref="def:c-like-comment-multiline" style-ref="comment"/>
         <context ref="def:c-like-close-comment-outside-comment" style-ref="comment"/>
         <context ref="if0-comment"/>
-        <context ref="include"/>
-        <context ref="preprocessor"/>
+        <context ref="import"/>
         <context ref="string"/>
         <context ref="char"/>
         <context ref="float"/>
@@ -238,10 +239,10 @@
         <context ref="invalid-octal"/>
         <context ref="decimal"/>
         <context ref="keywords"/>
+        <context ref="boolean"/>
         <context ref="operators"/>
         <context ref="types"/>
         <context ref="custom-type"/>
-        <context ref="boolean"/>
       </include>
     </context>
 
