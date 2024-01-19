@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-wren">
+    <comment>Wren document</comment>
+    <glob pattern="*.wren"/>
+    <alias type="text/x-wren"/>
+    <sub-class-of type="text/plain"/>
+    <generic-icon name="text-x-plain"/>
+    <icon name="text-x-script"/>
+    <icon name="text-x-source"/>
+  </mime-type>
+</mime-info>

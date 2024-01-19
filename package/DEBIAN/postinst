@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+update-mime-database /usr/share/mime
+exit 0

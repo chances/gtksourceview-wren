@@ -1,0 +1,9 @@
+Package: gtksourceview-wren
+Version: 0.1
+Maintainer: Chance Snow <apps@chancesnow.me>
+Architecture: all
+Description: Wren language syntax and MIME type
+Homepage: https://github.com/chances/gtksourceview-wren
+Vcs-Git: https://github.com/chances/gtksourceview-wren.git
+Depends: bash
+
