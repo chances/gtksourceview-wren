@@ -15,8 +15,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "TAG_NAME=$(git describe --tags HEAD --abbrev=0 2>/dev/null || echo "v0.1.0")" >> $GITHUB_OUTPUT
+      - name: Resolve an appropriate version tag
         id: version
+        run: |
+          TAG_NAME=$(git describe --tags HEAD --abbrev=0 2>/dev/null || echo "v0.1.0")
+          echo "Resolved version: $TAG_NAME"
+          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_OUTPUT
       - name: Update Release Draft
         uses: release-drafter/release-drafter@v5.25.0
         env:
@@ -35,6 +39,6 @@ jobs:
           version: ${{ steps.version.outputs.TAG_NAME }}
           publish: false
           commitish: ${{ github.sha }}
-          prerelease: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, 'v0.') }}
+          prerelease: ${{ startsWith(steps.version.outputs.TAG_NAME, 'v0.') }}
           # Semantic identifier (alpha, beta, rc, etc.) to increment for prerelease versions.
           prerelease-identifier: 'rc'
