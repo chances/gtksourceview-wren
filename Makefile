@@ -29,7 +29,6 @@ install:
 	mkdir -p $(DESTDIR)/DEBIAN
 # See https://superuser.com/a/216920/214545
 	cp -Lr `pwd`/src/* $(DESTDIR)/.
-	cp -L debian/copyright $(DESTDIR)/usr/share/doc/gtksourceview-wren/copyright
 .PHONY: install
 
 clean:
