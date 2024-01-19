@@ -13,13 +13,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: elgohr/asdf-build-action@master
-      env:
-        ENVIRONMENT: action-validator
-        VERSION: latest
 
     - name: Install dependencies
-      run: sudo apt install build-essential debhelper libgtksourceview-3.0-common --yes
+      run: |
+        sudo apt install build-essential debhelper libgtksourceview-3.0-common --yes
+        brew install asdf
+        asdfBin=`brew --prefix asdf`/libexec/bin
+        $(asdfBin)/asdf install
+        actionValidator=$(asdfBin)/asdf list action-validator | cut --delimiter="*" --fields=2
+        $(asdfBin)/asdf local action-validator $(actionValidator)
+        echo "$(asdfBin)" >> $GITHUB_PATH
 
     - name: Run check
       run: make check
