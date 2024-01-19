@@ -1,0 +1,24 @@
+# https://github.com/release-drafter/release-drafter#configuration-options
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+categories:
+  - title: '🚀 Features'
+    labels: [enhancement, feature]
+  - title: '🐛 Bug Fixes'
+    labels: [bug, fix]
+  - title: '🛠️ Maintenance'
+    label: 'chore'
+change-template: '- #$NUMBER: $TITLE (@$AUTHOR)'
+change-title-escapes: '\<*_&' # Add # and @ to disable mentions. Add ` to disable code blocks.
+version-resolver:
+  default: patch
+  major:
+    label: breaking-change
+  minor:
+    labels: [enhancement, feature]
+#  patch:
+#    label: patch
+template: |
+  ## Changes
+
+  $CHANGES
