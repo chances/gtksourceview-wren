@@ -63,6 +63,6 @@ jobs:
         if: ${{ success() }}
         with:
           name: gtksourceview-wren.deb
-          path: $GITHUB_WORKSPACE/debian/gtksourceview-wren.deb
+          path: $GITHUB_WORKSPACE/gtksourceview-wren.deb
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           content-type: application/vnd.debian.binary-package
