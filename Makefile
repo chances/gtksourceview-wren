@@ -10,13 +10,16 @@ gtksourceview-wren.deb: $(SOURCES)
 	@dpkg-buildpackage -b -us -uc
 	@dpkg-deb --build debian/gtksourceview-wren
 
-check: gtksourceview-wren.deb
-	@echo "Linting GitHub workflows."
-	@`asdf which action-validator` .github/workflows/build.yml || true
-	@`asdf which action-validator` .github/workflows/release.yml || true
+check: check-workflows gtksourceview-wren.deb
 	@echo "Linting Debian package."
 	@echo lintian -i -I --show-overrides debian/gtksourceview-wren.deb
 	@lintian -i -I --show-overrides debian/gtksourceview-wren.deb || true
+.PHONY: check
+
+check-workflows: $(shell find .github/workflows -type f)
+	@echo "Linting GitHub workflows using action-validator ($(shell `asdf which action-validator` --version | cut -d" " --fields=2))."
+	@`asdf which action-validator` .github/workflows/build.yml || true
+	@`asdf which action-validator` .github/workflows/release.yml || true
 .PHONY: check
 
 distcheck: check
