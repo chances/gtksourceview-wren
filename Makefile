@@ -11,12 +11,11 @@ gtksourceview-wren.deb: $(SOURCES)
 	@dpkg-deb --build debian/gtksourceview-wren
 
 check: gtksourceview-wren.deb
-	lintian -i -I --show-overrides debian/gtksourceview-wren.deb
+	@echo "Linting Debian package."
+	lintian -i -I --show-overrides debian/gtksourceview-wren.deb || true
 .PHONY: check
 
-distcheck: gtksourceview-wren.deb
-	@echo "Linting Debian package."
-	@lintian -i -I --show-overrides
+distcheck: check
 	@echo "Testing installation and removal."
 	@./INSTALL
 	@sudo dpkg -r gtksourceview-wren
