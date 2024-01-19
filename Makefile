@@ -17,6 +17,8 @@ check: check-workflows gtksourceview-wren.deb
 .PHONY: check
 
 check-workflows: $(shell find .github/workflows -type f)
+	@echo "Linting configs using yamllint ($(shell yamllint --version | cut -d" " --fields=2))."
+	yamllint .github/release-drafter.yml || true
 	@echo "Linting GitHub workflows using action-validator ($(shell `asdf which action-validator` --version | cut -d" " --fields=2))."
 	@`asdf which action-validator` .github/workflows/build.yml || true
 	@`asdf which action-validator` .github/workflows/release.yml || true
