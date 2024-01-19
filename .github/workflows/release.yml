@@ -55,13 +55,12 @@ jobs:
       - name: Download CI artifacts
         uses: actions/download-artifact@v4.1.1
         with:
-          name: gtksourceview-wren.deb
           run-id: ${{ inputs.workflow_run_id }}"
 
       - uses: Shopify/upload-to-release@v1
         if: ${{ success() }}
         with:
           name: gtksourceview-wren.deb
-          path: $GITHUB_WORKSPACE/gtksourceview-wren.deb
+          path: $GITHUB_WORKSPACE/debian/gtksourceview-wren.deb
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           content-type: application/vnd.debian.binary-package
