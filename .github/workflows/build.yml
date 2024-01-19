@@ -1,0 +1,21 @@
+name: Wren for GtkSourceView CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Run check
+      run: make check
+
+    - name: Run distcheck
+      run: make distcheck
