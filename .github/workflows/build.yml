@@ -22,3 +22,10 @@ jobs:
 
     - name: Run distcheck
       run: make distcheck
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        path: debian/*.deb
+        retention-days: 30
+        overwrite: true
