@@ -1,0 +1,15 @@
+# TODO
+- Resolve lint issues (`make check`)
+  - wrong-file-owner-uid-or-gid usr/ 1000/1000
+  - wrong-file-owner-uid-or-gid usr/share/ 1000/1000
+  - wrong-file-owner-uid-or-gid usr/share/doc/ 1000/1000
+  - wrong-file-owner-uid-or-gid ... use --no-tag-display-limit to see all (or pipe to a file/program)
+  - bad-owner-for-doc-file usr/share/doc/gtksourceview-wren/ chances/chances != root/root
+  - bad-owner-for-doc-file usr/share/doc/gtksourceview-wren/changelog.gz chances/chances != root/root
+  - bad-owner-for-doc-file usr/share/doc/gtksourceview-wren/copyright chances/chances != root/root
+  - maintainer-script-ignores-errors postinst
+      The maintainer script doesn't seem to set the -e flag which ensures that the script's execution is aborted when any executed command fails.
+      
+      Refer to Debian Policy Manual section 10.4 (Scripts) for details.
+      
+      Severity: normal, Certainty: certain
