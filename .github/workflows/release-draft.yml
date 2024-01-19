@@ -1,5 +1,5 @@
 name: Draft Releases
-run-name: Triggered from ${{ github.ref_type }} ${{ github.ref_name }} by @${{ github.actor }}
+run-name: Draft release triggered from ${{ github.ref_type }} '${{ github.ref_name }}'' by @${{ github.actor }}
 
 on:
   push:
