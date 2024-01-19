@@ -1,5 +1,5 @@
 name: Release Wren for GtkSourceView
-run-name: Release triggered from ${{ github.ref_type }} ${{ github.ref_name }} by @${{ github.actor }}
+run-name: Release triggered from ${{ github.ref_type }} '${{ github.ref_name }}' by @${{ github.actor }}
 
 on:
   # TODO:
