@@ -18,7 +18,15 @@ version-resolver:
     labels: [enhancement, feature]
  patch:
    labels: [bug, hotfix]
+# TODO: List contributors
+#  ## Contributors
+
+#  $CONTRIBUTORS
 template: |
   ## Changes
-
+  
   $CHANGES
+  
+  -----
+  
+  Thanks to our wonderful [contributors](https://github.com/chances/gtksourceview-wren/graphs/contributors)! ❤️
