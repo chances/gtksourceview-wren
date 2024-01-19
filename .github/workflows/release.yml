@@ -1,0 +1,67 @@
+name: Release Wren for GtkSourceView
+run-name: Release triggered from ${{ github.ref_type }} ${{ github.ref_name }} by @${{ github.actor }}
+
+on:
+  # TODO:
+  # push:
+  #   tags: [ "0.*", "1.*" ]
+  workflow_call:
+    inputs:
+      workflow_run_id:
+        description: 'The ID of a workflow run containing artifacts to publish, passed from the caller workflow'
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      workflow_run_id:
+        description: 'The ID of a workflow run containing artifacts to publish, passed from the caller workflow'
+        required: true
+        type: string
+
+jobs:
+  release:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # TODO: Perform these steps with a Node.js script (https://stackoverflow.com/a/74296413/1363247)
+      # - name: Get last successful CI run
+      #   id: getWorkflowRuns
+      #   if: ${{ inputs.workflow_run_id_with_artifacts == 'null' }}
+      #   run: |
+      #     gh api \
+      #       -H "Accept: application/vnd.github+json" \
+      #       -H "X-GitHub-Api-Version: 2022-11-28" \
+      #       -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+      #       "/repos/${{ github.repository }}/actions/runs?event=push&status=success&per_page=1&exclude_pull_requests=true" \
+      #       > /tmp/workflowRuns.json
+      #     echo "::set-output name=workflowRuns::`cat /tmp/workflowRuns.json`"
+
+      # - name: Get last successful CI run
+      #   id: lastCiRun
+      #   if: ${{ inputs.workflow_run_id_with_artifacts == 'null' && fromJson(steps.getWorkflowRuns.outputs.workflowRuns).total_count > 0 }}
+      #   run: |
+      #     lastCiRun=${{ fromJSON(steps.getWorkflowRuns.outputs.workflowRuns).workflow_runs[0].id }}
+      #     echo "Downloading artifacts from workflow run '$lastCiRun': ${{ fromJSON(steps.getWorkflowRuns.outputs.workflowRuns).workflow_runs[0].html_url }}"
+      #     echo "::set-output name=lastCiRun::$lastCiRun"
+
+      # - name: Download CI artifacts
+      #   uses: actions/download-artifact@v4.1.1
+      #   if: ${{ inputs.workflow_run_id_with_artifacts == 'null' && fromJson(steps.getWorkflowRuns.outputs.workflowRuns).total_count > 0 }}
+      #   with:
+      #     name: gtksourceview-wren.deb
+      #     run-id: ${{ steps.lastCiRun.outputs.lastCiRun }}"
+
+      - name: Download CI artifacts
+        uses: actions/download-artifact@v4.1.1
+        with:
+          name: gtksourceview-wren.deb
+          run-id: ${{ inputs.workflow_run_id }}"
+
+      - uses: Shopify/upload-to-release@v1
+        if: ${{ success() }}
+        with:
+          name: gtksourceview-wren.deb
+          path: $GITHUB_WORKSPACE/gtksourceview-wren.deb
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          content-type: application/vnd.debian.binary-package
