@@ -1,12 +1,12 @@
 all: build
 
-SOURCES := $(shell find debian -type f)
+SOURCES := $(shell find data -type f) $(shell find src -type f)
 
 build: $(SOURCES)
 	@echo "Nothing to be done for 'build'."
 .PHONY: build
 
-gtksourceview-wren.deb: $(SOURCES)
+debian/gtksourceview-wren.deb: $(SOURCES)
 	@dpkg-buildpackage -b -us -uc
 	@dpkg-deb --build debian/gtksourceview-wren
 
