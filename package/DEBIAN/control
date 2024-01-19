@@ -3,6 +3,8 @@ Version: 0.1
 Maintainer: Chance Snow <apps@chancesnow.me>
 Architecture: all
 Description: Wren language syntax and MIME type
+Copyright: 2024 Snow Developments, LLC
+License: MIT
 Homepage: https://github.com/chances/gtksourceview-wren
 Vcs-Git: https://github.com/chances/gtksourceview-wren.git
 Depends: bash

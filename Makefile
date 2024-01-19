@@ -1,6 +1,8 @@
 all: gtksourceview-wren.deb
 
-gtksourceview-wren.deb: package/DEBIAN/control package/DEBIAN/postinst package/DEBIAN/preinst
+SOURCES := $(shell find package/DEBIAN -type f)
+
+gtksourceview-wren.deb: $(SOURCES)
 	@dpkg-deb --build package
 	@echo "Renaming 'package.deb' to 'gtksourceview-wren.deb'."
 	mv package.deb gtksourceview-wren.deb
