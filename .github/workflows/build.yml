@@ -3,12 +3,12 @@ name: Wren for GtkSourceView CI
 on:
   push:
     branches: [ "main" ]
+    tags: [ "v0.*", "v1.*" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-20.04
 
     steps:
@@ -32,3 +32,14 @@ jobs:
         path: debian/*.deb
         retention-days: 7
         overwrite: true
+
+  release:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref_type == 'tag' && startsWith(github.ref_name, 'v') }}
+    needs: build
+  
+    steps:
+      - uses: ./.github/workflows/release.yml
+        with:
+          workflow_run_id: ${{ github.run_id }}
+          artifact_id: ${{ steps.uploadArtifacts.outputs.artifact-id }}
