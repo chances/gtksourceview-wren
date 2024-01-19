@@ -14,6 +14,12 @@ jobs:
   update-draft-release:
     runs-on: ubuntu-latest
 
+    permissions:
+      # Required to create a GitHub release
+      contents: write
+      # Read permission is required for autolabeler
+      pull-requests: read
+
     steps:
       - name: Resolve an appropriate version tag
         id: version
