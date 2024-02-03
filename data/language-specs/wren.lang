@@ -66,6 +66,7 @@
       <!-- TODO: Something fancy, like detecting "error"s in malformed class identifiers? -->
       <!-- TODO: Add `((\s+(as)\s+)?` for import aliases -->
       <include>
+        <context id="keyword" sub-pattern="1" style-ref="keyword" class="keyword"/>
         <context id="imported-module" sub-pattern="2" style-ref="imported-module" class="path"/>
         <context id="keyword" sub-pattern="3" style-ref="keyword" class="keyword"/>
       </include>
